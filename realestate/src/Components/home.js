@@ -1,13 +1,15 @@
 import React from 'react'
-import { Container, Link, TextField } from '@mui/material'
+import { Link, TextField } from '@mui/material'
 import banner from './Image/pic/banner.png'
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
-import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import SavedSearch from '@mui/icons-material/SavedSearch';
+import Services from './services';
+import About from './about';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -58,6 +60,12 @@ function home (){
       </Grid>
     </Box>
   </div>
+  <div>
+<h2 style={{textAlign:'center', color:'ActiveBorder', fontSize:50}}>Featured Property Types</h2>
+<p style={{color:'GrayText'}}>Find All Type of Property.</p>
+<Services/>
+  </div><br/><br/>
+<About/>
 </div>
 
     </>
