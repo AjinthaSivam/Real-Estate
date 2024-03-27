@@ -8,9 +8,9 @@ import Pricing from './Components/pricing';
 function App() {
   return (
     <div className="App">
-  
+     
     <Router>
-      
+    <Navbar/>
         <Routes>
           <Route exact path='/' Component={About}/>
           <Route path='/about' Component={About}/>

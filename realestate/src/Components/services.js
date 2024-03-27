@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function Services (){
   return (
     <>
-    <Navbar/>
+ 
    <div>
     <Container>
         <br/><br/>
