@@ -25,10 +25,10 @@ function Services (){
  
    <div>
     <Container>
-        <br/><br/>
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={10}>
-                <Grid xs={12}>
+        <br/><br/> <br/><br/>
+        <Box sx={{ flexGrow: 1 }} >
+            <Grid container spacing={10} >
+                <Grid xs={12} >
                 <Item>
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 5, sm: 2, md: 8 }}>
                         <Item style={{width:220}}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, TextField } from '@mui/material'
+import { Container, Link, TextField } from '@mui/material'
 import banner from './Image/pic/banner.png'
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import SavedSearch from '@mui/icons-material/SavedSearch';
 import Services from './services';
 import About from './about';
-
+import Footer from './Image/footer';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -65,7 +65,13 @@ function home (){
 <p style={{color:'GrayText'}}>Find All Type of Property.</p>
 <Services/>
   </div><br/><br/>
+  <Container>
+  <h1 style={{ fontSize: 50, fontWeight: 'bold'}} >Discover the Story Behind Our Real Estate Magic</h1>
+     <p style={{color:'GrayText'}}>Unveiling Our Vision, Mission, and Commitment</p>
+     </Container>
 <About/>
+<br/>
+<Footer/>
 </div>
 
     </>
