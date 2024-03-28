@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const pricing = () => {
+function  Pricing ()  {
   return (
     <div>pricing</div>
-  )
+  );
 }
+
+export default Pricing;
