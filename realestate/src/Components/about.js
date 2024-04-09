@@ -10,6 +10,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 import backgroundImage from './Image/About.png';
 import subcon from './Image/immio.jpg';
+import { Link } from 'react-router-dom';
 
 const Item3 = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -80,7 +81,10 @@ function About() {
                   </Typography><br /><br />
 
                   <Stack spacing={2} direction="row">
-                    <Button variant="contained" style={{ marginLeft: 30, width: 150, borderRadius: 10, height: 40 }}>More About Us</Button>
+                    <Link to= '/contactus'>
+                    <Button variant="contained" style={{ marginLeft: 30, width: 150, borderRadius: 10, height: 40 }} >More About Us</Button>
+                    </Link>
+                   
                   </Stack>
                 </Item>
               </Grid>
@@ -108,9 +112,11 @@ function About() {
                     <Grid item xs={6} sx={{ flexGrow: 1 }}>
                       <Item3 style={{ backgroundColor: '#92D378', color: 'white', fontSize: '15' }}>
                         <Stack direction="row" spacing={2}>
+                        <Link to= '/contactus'>
                           <Button variant="contained" endIcon={<SendIcon />} style={{ backgroundColor: 'white', color: 'black', height: 68, width: 400, fontSize: 20, borderRadius: 15, marginLeft: 50 }}>
                             Contact Us Today
                           </Button>
+                        </Link>  
                         </Stack>
                       </Item3>
                     </Grid>
