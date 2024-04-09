@@ -56,6 +56,22 @@ app.post('/api/lands', async (req, res) => {
     }
 })
 
+app.delete('/api/delete/:id', async(req, res) => {
+  const id = req.params.id
+  console.log(id)
+  const data = await Land.deleteOne({_id: id})
+  res.send({success: true, message: "Data deleted successfully", data:data})
+})
+
+app.put('/api/update', async(req, res) => {
+  console.log(req.body)
+  const { _id, ...rest } = req.body
+
+  console.log(rest)
+  const data = await Land.updateOne({_id: _id}, rest)
+  res.send({success:true, message:"Data updated successfully", data:data})
+})
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

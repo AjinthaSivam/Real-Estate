@@ -4,38 +4,86 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
+import EditForm from './EditForm';
+import Modal from 'react-modal'
+
+
+Modal.defaultStyles.overlay = {
+  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+
 
 function ManageAds() {
   const [columns, setColumns] = useState([]);
   const [records, setRecords] = useState([]);
+  const [isOpen, setIsOpen] = useState(false)
+
+  const [editFormData, setEditFormData] = useState({
+    name: '',
+    address: '',
+    sqft: '',
+    description: '',
+    price: '',
+    contact: '',
+    image: '',
+    _id: ''
+});
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/data')
+    getFetchData()
+  }, []);
+
+  const getFetchData = async() => {
+      axios.get('http://localhost:5000/api/data')
       .then(res => {
         const filteredColumns = Object.keys(res.data[0]).filter(column => column !== '_id' && column !== 'image' && column !== '__v');
         setColumns(filteredColumns);
         setRecords(res.data);
       })
-  }, []);
+  }
 
-  const handleEdit = (id) => {
-    // Implement your edit logic here, e.g., redirect to edit page
-    console.log('Edit:', id);
+  const handleEditOnchange = async(e) => {
+    const {value, name} = e.target
+    setEditFormData((preve) => {
+      return{
+        ...preve,
+        [name] : value
+      }
+    })
+  }
+
+  const handleUpdate = async(e) => {
+    e.preventDefault()
+    
+    const data = await axios.put("http://localhost:5000/api/update", editFormData)
+    if(data.data.success) {
+      getFetchData()
+      setIsOpen(false)
+    }
+  }
+
+  const handleEdit = (el) => {
+    setEditFormData(el)
+    setIsOpen(true)
   }
 
   const handleDelete = async (id) => {
-    try {
-      // Make an HTTP DELETE request to your backend API
-      await axios.delete(`http://localhost:5000/api/data/${id}`);
-  
-      // If the delete request is successful, remove the item from the records state
-      setRecords(prevRecords => prevRecords.filter(record => record._id !== id));
-  
-      console.log('Item deleted successfully:', id);
-    } catch (error) {
-      console.error('Error deleting item:', error);
+    const data = await axios.delete("http://localhost:5000/api/delete/" + id)
+
+    if (data.data.success) {
+      getFetchData()
+      alert(data.data.message)
     }
-  }
+  }  
   return (
     <div>
       <Header />
@@ -56,7 +104,7 @@ function ManageAds() {
                   <td key={j} style={{ border: '1px solid #ddd', padding: '8px' }}>{d[column]}</td>
                 ))}
                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>
-                  <IconButton onClick={() => handleEdit(d._id)} className="btn btn-sm btn-primary mr-2">
+                  <IconButton onClick={() => handleEdit(d)} className="btn btn-sm btn-primary mr-2">
                     <EditIcon/>
                   </IconButton>
                   <IconButton onClick={() => handleDelete(d._id)} className="btn btn-sm btn-danger">
@@ -67,9 +115,20 @@ function ManageAds() {
             ))}
           </tbody>
         </table>
+        <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
+        {/* Edit form content here */}
+        <EditForm
+          handleSubmit={handleUpdate}
+          handleInputChange={handleEditOnchange}
+          formData={editFormData}
+        />
+      </Modal>
+      
       </div>
     </div>
   );
+
+  
 }
 
 export default ManageAds;
