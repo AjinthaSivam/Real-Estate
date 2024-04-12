@@ -18,7 +18,10 @@ Modal.defaultStyles.overlay = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  
 };
+
+
 
 
 
@@ -87,7 +90,7 @@ function ManageAds() {
   return (
     <div>
       <Header />
-      <div className='container mt-5'>
+      <div className='mt-5 flex justify-center'>
         <table className='table' style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead className='thead-dark'>
             <tr>

@@ -43,6 +43,17 @@ function CreateAds () {
 
         try {
             await axios.post('http://localhost:5000/api/lands', formData);
+            setFormData(
+                {
+                    name: '',
+                    address: '',
+                    sqft: '',
+                    description: '',
+                    price: '',
+                    contact: '',
+                    image: '',
+                }
+            )
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -118,6 +129,7 @@ function CreateAds () {
                         />
                     </SpacedFormControl>
                     <Button variant='contained' color='primary' style={{marginTop:20, width:'15%'}} type='submit'>Create Ad</Button>
+                    
                 </FormGroup>
             </form>
         

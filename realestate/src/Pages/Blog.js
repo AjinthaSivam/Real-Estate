@@ -8,6 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
 import Header from '../Components/Admin/Header'
+import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 
 const CustomCard = styled(Card)(({ theme }) => ({
     maxWidth: 345,
@@ -83,17 +84,23 @@ function Blog() {
                                     {/* <ImageOverlay>
                                         <Typography variant="h6" style={{ color: '#fff' }}>Image Overlay Text</Typography>
                                     </ImageOverlay> */}
-                                    <CardContent>
+                                    <CardContent className="flex flex-col items-center">
                                         <Typography gutterBottom variant="h5" component="div">
                                             {item.name}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
+                                        <Typography variant="body2" color="text.secondary" className="items-center">
                                             Address: {item.address}<br />
                                             Sqft: {item.sqft}<br />
                                             Description: {item.description}<br />
                                             Price: {item.price}<br />
                                             Contact Number: {item.contact}<br />
                                         </Typography>
+                                        <div className="absolute mt-3 bottom-0 right-0 p-4">
+                                            <button onClick={() => window.open('tel:{item.contact}')}>
+                                            <PhoneEnabledIcon className=" w-10 h-10 text-green-500" />
+                                            </button>
+                                        </div>
+                                        
                                     </CardContent>
                                 </CustomCard>
                             </Grid>

@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from '../Components/Admin/Header'
+import Blog from './Blog'
 
 function Home () {
   return (
     <div>
-        <Header />
-        <h1>Home</h1>
+        
+        <Blog />
     </div>
   )
 }
